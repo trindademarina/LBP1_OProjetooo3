@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}" media="screen" />
+    <title>Painel</title>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1> Login realizado com sucesso</h1>
+        <div class="button-container">
+            <a href="/admin"> <button type="button"  class="dashboard-button" > Administradores </button> </a>
+        
+            <a href="/logout"> <button type="button"  class="dashboard-button" > Logout </button></a>
+            
+            <a href="/"> <button type="button"  class="dashboard-button" > Voltar </button></a>
+        </div>
+        <!-- mostrar mensagem flashed -->
+        {% with resposta = get_flashed_messages(with_categories = True)%}
+            {% if resposta %}
+                {% for category, message in resposta %}
+                    <div class="{{category}}"> {{message}} </div>
+                {% endfor %}
+            {% endif%}
+        {% endwith %}
+    </div>
+</body>
+</html>
